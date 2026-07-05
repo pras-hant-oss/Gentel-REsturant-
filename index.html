@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gertie Brownes Bar & Bistro | Athlone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #c9a96e;
+            --accent: #8b6914;
+            --light: #f8f6f1;
+            --cream: #faf8f3;
+            --text: #2c2c2c;
+            --text-light: #666;
+            --border: #e8e4dc;
+            --shadow: 0 4px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+            transition: all 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06); padding: 15px 5%;
+        }
+        nav.scrolled .logo, nav.scrolled .nav-links a { color: var(--primary); }
+        nav.scrolled .mobile-menu-btn { color: var(--primary); }
+        .logo {
+            font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700;
+            color: white; text-decoration: none; letter-spacing: 1px; transition: color 0.3s;
+        }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a {
+            color: white; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+            letter-spacing: 2px; text-transform: uppercase; position: relative; transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px;
+            background: var(--secondary); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        /* HERO */
+        .hero {
+            height: 100vh; min-height: 700px;
+            background: linear-gradient(135deg, rgba(26,26,26,0.7) 0%, rgba(26,26,26,0.5) 100%),
+                        url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1920&q=80') center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 20px; animation: fadeInUp 1.2s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 6px;
+            text-transform: uppercase; color: var(--secondary); margin-bottom: 20px; display: block;
+        }
+        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); color: white; line-height: 1.1; margin-bottom: 25px; font-weight: 300; letter-spacing: -1px; }
+        .hero h1 span { font-style: italic; font-weight: 500; color: var(--secondary); }
+        .hero-desc { font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 500px; margin: 0 auto 40px; font-weight: 300; line-height: 1.8; }
+        .hero-rating {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+            padding: 12px 28px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.15); margin-bottom: 30px;
+        }
+        .hero-rating .stars { color: #ffc107; font-size: 0.9rem; letter-spacing: 2px; }
+        .hero-rating span { color: rgba(255,255,255,0.9); font-size: 0.85rem; font-weight: 500; }
+        .hero-cta { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px; background: var(--secondary); color: var(--primary);
+            padding: 16px 36px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+            letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease; border: 2px solid var(--secondary);
+        }
+        .btn-primary:hover { background: transparent; color: var(--secondary); transform: translateY(-2px); }
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: 10px; background: transparent; color: white;
+            padding: 16px 36px; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 0.9rem;
+            letter-spacing: 1px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;
+        }
+        .btn-outline:hover { border-color: var(--secondary); color: var(--secondary); transform: translateY(-2px); }
+        .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.5); font-size: 1.5rem; animation: bounce 2s infinite; cursor: pointer; }
+        @keyframes bounce { 0%,20%,50%,80%,100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
+
+        /* SECTIONS COMMON */
+        section { padding: 100px 5%; }
+        .section-header { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+        .section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--secondary); margin-bottom: 15px; display: block; }
+        .section-header h2 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--primary); margin-bottom: 20px; line-height: 1.2; }
+        .section-header p { color: var(--text-light); font-size: 1.05rem; line-height: 1.7; }
+
+        /* ABOUT */
+        .about { background: var(--light); position: relative; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .about-image { position: relative; }
+        .about-image img { width: 100%; height: 550px; object-fit: cover; border-radius: 4px; box-shadow: var(--shadow-lg); }
+        .about-image::before { content: ''; position: absolute; top: -20px; left: -20px; right: 20px; bottom: 20px; border: 2px solid var(--secondary); border-radius: 4px; z-index: -1; }
+        .about-content h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 25px; color: var(--primary); }
+        .about-content p { color: var(--text-light); margin-bottom: 20px; font-size: 1.05rem; line-height: 1.8; }
+        .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        .feature-item { display: flex; align-items: flex-start; gap: 12px; }
+        .feature-item i { color: var(--secondary); font-size: 1.2rem; margin-top: 3px; }
+        .feature-item span { font-weight: 500; font-size: 0.95rem; }
+
+        /* SIGNATURE DISHES */
+        .signature-dishes { background: var(--cream); }
+        .dishes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .dish-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: all 0.4s ease; position: relative; }
+        .dish-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .dish-image { height: 260px; overflow: hidden; position: relative; }
+        .dish-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .dish-card:hover .dish-image img { transform: scale(1.08); }
+        .dish-badge { position: absolute; top: 15px; left: 15px; background: var(--secondary); color: var(--primary); padding: 6px 14px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .dish-info { padding: 28px; }
+        .dish-info h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary); }
+        .dish-info p { color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
+        .dish-price { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; color: var(--secondary); }
+        .full-menu-btn-container { text-align: center; margin-top: 50px; }
+        .btn-gold { display: inline-flex; align-items: center; gap: 12px; background: var(--primary); color: var(--secondary); padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; border: 2px solid var(--primary); transition: all 0.3s ease; cursor: pointer; }
+        .btn-gold:hover { background: transparent; color: var(--primary); }
+
+        /* MENU MODAL */
+        .menu-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 2000; overflow-y: auto; animation: fadeIn 0.3s ease; }
+        .menu-modal.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .menu-modal-content { background: var(--cream); max-width: 900px; margin: 60px auto; border-radius: 12px; position: relative; animation: slideUp 0.4s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .menu-modal-header { background: var(--primary); padding: 40px; text-align: center; border-radius: 12px 12px 0 0; position: relative; }
+        .menu-modal-header h2 { color: white; font-size: 2.5rem; margin-bottom: 10px; }
+        .menu-modal-header p { color: var(--secondary); font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; }
+        .menu-close { position: absolute; top: 20px; right: 25px; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+        .menu-close:hover { background: rgba(255,255,255,0.1); }
+        .menu-body { padding: 40px; }
+        .menu-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
+        .menu-tab { padding: 12px 24px; border: 1px solid var(--border); background: white; border-radius: 30px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--text-light); transition: all 0.3s ease; }
+        .menu-tab:hover, .menu-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .menu-section { display: none; }
+        .menu-section.active { display: block; animation: fadeIn 0.4s ease; }
+        .menu-category-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary); margin-bottom: 25px; padding-bottom: 12px; border-bottom: 2px solid var(--secondary); display: inline-block; }
+        .menu-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); transition: background 0.3s; }
+        .menu-item:hover { background: rgba(201,169,110,0.05); margin: 0 -20px; padding-left: 20px; padding-right: 20px; border-radius: 8px; }
+        .menu-item-info { flex: 1; padding-right: 20px; }
+        .menu-item-info h4 { font-size: 1.15rem; color: var(--primary); margin-bottom: 6px; font-weight: 600; }
+        .menu-item-info p { font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
+        .menu-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--secondary); white-space: nowrap; }
+        .menu-item-allergens { display: flex; gap: 6px; margin-top: 8px; }
+        .allergen-tag { width: 22px; height: 22px; border-radius: 50%; background: var(--light); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: var(--text-light); border: 1px solid var(--border); }
+        .menu-legend { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-light); }
+        .menu-legend span { display: flex; align-items: center; gap: 6px; }
+
+        /* GALLERY */
+        .gallery { background: var(--primary); padding: 100px 5%; }
+        .gallery .section-header h2, .gallery .section-header p { color: white; }
+        .gallery .section-label { color: var(--secondary); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1200px; margin: 0 auto; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 6px; aspect-ratio: 1; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
+        .gallery-item:hover::after { opacity: 1; }
+        .gallery-item span { position: absolute; bottom: 15px; left: 15px; color: white; font-size: 0.85rem; font-weight: 500; z-index: 2; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+        .gallery-item:hover span { opacity: 1; transform: translateY(0); }
+        .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
+        .gallery-item.tall { grid-row: span 2; aspect-ratio: 1/2; }
+
+        /* REVIEWS */
+        .reviews { background: var(--light); }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .review-card { background: white; padding: 35px; border-radius: 12px; box-shadow: var(--shadow); position: relative; }
+        .review-card::before { content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--secondary); opacity: 0.3; position: absolute; top: 10px; right: 25px; line-height: 1; }
+        .review-stars { color: #ffc107; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 2px; }
+        .review-text { color: var(--text); font-size: 1rem; line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+        .reviewer { display: flex; align-items: center; gap: 12px; }
+        .reviewer-avatar { width: 45px; height: 45px; border-radius: 50%; background: var(--secondary); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem; }
+        .reviewer-info h4 { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--primary); }
+        .reviewer-info span { font-size: 0.8rem; color: var(--text-light); }
+
+        /* VISIT US */
+        .visit { background: var(--cream); padding: 0; }
+        .visit-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; }
+        .visit-info { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; max-width: 600px; margin-left: auto; }
+        .visit-info h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 15px; color: var(--primary); }
+        .visit-info > p { color: var(--text-light); margin-bottom: 40px; font-size: 1.05rem; }
+        .info-list { list-style: none; }
+        .info-list li { display: flex; align-items: flex-start; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+        .info-list li:last-child { border-bottom: none; }
+        .info-list i { color: var(--secondary); font-size: 1.2rem; width: 24px; text-align: center; margin-top: 3px; }
+        .info-list strong { display: block; color: var(--primary); font-weight: 600; margin-bottom: 3px; }
+        .info-list span { color: var(--text-light); font-size: 0.95rem; }
+        .info-list a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+        .info-list a:hover { text-decoration: underline; }
+        .visit-map { position: relative; min-height: 500px; }
+        .visit-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; filter: grayscale(20%) contrast(1.1); }
+
+        /* HIGHLIGHTS */
+        .highlights { background: var(--primary); padding: 80px 5%; }
+        .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .highlight-item { color: white; padding: 20px; }
+        .highlight-item i { font-size: 2rem; color: var(--secondary); margin-bottom: 15px; display: block; }
+        .highlight-item h4 { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+        .highlight-item p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+        /* FOOTER */
+        footer { background: #0f0f0f; color: rgba(255,255,255,0.6); padding: 60px 5% 30px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; max-width: 1200px; margin: 0 auto 50px; }
+        .footer-brand h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: white; margin-bottom: 15px; }
+        .footer-brand p { font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s; }
+        .social-links a:hover { background: var(--secondary); border-color: var(--secondary); color: var(--primary); }
+        .footer-col h4 { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: white; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-col ul li a:hover { color: var(--secondary); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; text-align: center; font-size: 0.85rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .about-grid, .visit-grid { grid-template-columns: 1fr; }
+            .about-image::before { display: none; }
+            .visit-info { padding: 60px 5%; max-width: 100%; }
+            .visit-map { min-height: 400px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.98); flex-direction: column; padding: 30px; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .nav-links a { color: var(--primary); font-size: 1rem; }
+            .mobile-menu-btn { display: block; color: var(--primary); }
+            nav.scrolled .mobile-menu-btn { color: var(--primary); }
+            .hero-cta { flex-direction: column; align-items: center; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.wide, .gallery-item.tall { grid-column: span 1; grid-row: span 1; aspect-ratio: 1; }
+            .about-features { grid-template-columns: 1fr; }
+            .menu-modal-content { margin: 20px; }
+            .menu-body { padding: 25px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.5rem; }
+            section { padding: 60px 5%; }
+            .dishes-grid { grid-template-columns: 1fr; }
+            .menu-tabs { gap: 5px; }
+            .menu-tab { padding: 10px 16px; font-size: 0.75rem; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">Gertie Brownes</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#signature">Signature</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#visit">Visit Us</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-subtitle">Gastropub &mdash; Athlone, Ireland</span>
+            <h1>Where Tradition<br>Meets <span>Taste</span></h1>
+            <p class="hero-desc">A beloved Irish gastropub serving exceptional food, craft drinks, and warm hospitality in the heart of Athlone since 2010.</p>
+            <div class="hero-rating">
+                <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                <span>4.6 / 1,096 Reviews</span>
+            </div>
+            <div class="hero-cta">
+                <a href="#signature" class="btn-primary"><i class="fas fa-utensils"></i> Explore Menu</a>
+                <a href="#visit" class="btn-outline"><i class="fas fa-map-marker-alt"></i> Find Us</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About / Story Section -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800&q=80" alt="Gertie Brownes Interior">
+            </div>
+            <div class="about-content">
+                <span class="section-label">Our Story</span>
+                <h2>A Local Institution with Heart</h2>
+                <p>Nestled in the historic town of Athlone, Gertie Brownes Bar & Bistro has been a cornerstone of the local community for over a decade. Named after a beloved local figure, our gastropub blends the warmth of a traditional Irish pub with the sophistication of modern bistro dining.</p>
+                <p>Our kitchen team sources the finest local ingredients &mdash; from Hereford beef to fresh Atlantic seafood &mdash; crafting dishes that honour Irish culinary heritage while embracing contemporary flavours.</p>
+                <div class="about-features">
+                    <div class="feature-item"><i class="fas fa-wine-glass"></i><span>Great Wine List</span></div>
+                    <div class="feature-item"><i class="fas fa-music"></i><span>Live Music</span></div>
+                    <div class="feature-item"><i class="fas fa-fire"></i><span>Cozy Fireplace</span></div>
+                    <div class="feature-item"><i class="fas fa-futbol"></i><span>Sport Screenings</span></div>
+                    <div class="feature-item"><i class="fas fa-cocktail"></i><span>Craft Cocktails</span></div>
+                    <div class="feature-item"><i class="fas fa-coffee"></i><span>Artisan Coffee</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Dishes Section -->
+    <section class="signature-dishes" id="signature">
+        <div class="section-header">
+            <span class="section-label">Chef's Selection</span>
+            <h2>Signature Dishes</h2>
+            <p>Handpicked favourites that have earned their place as crowd-pleasers. Each dish is crafted with passion and the finest local ingredients.</p>
+        </div>
+        <div class="dishes-grid">
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Gerties Burger">
+                    <span class="dish-badge">Best Seller</span>
+                </div>
+                <div class="dish-info">
+                    <h3>Gerties Burger</h3>
+                    <p>Shane Maher's homemade 8oz flame-grilled steak burger with cheddar, bacon, beef tomato & lettuce in a brioche bun. Served with hand-cut chips, rustic slaw & roasted red pepper relish.</p>
+                    <div class="dish-price">&#8364;18.95</div>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="10oz Sirloin Steak">
+                    <span class="dish-badge">Premium</span>
+                </div>
+                <div class="dish-info">
+                    <h3>10oz Hereford Sirloin Steak</h3>
+                    <p>Prime Hereford sirloin cooked to your liking, with sauteed mushrooms & onions, hand-cut chips, beer-battered onion ring. Choice of garlic butter or peppercorn sauce.</p>
+                    <div class="dish-price">&#8364;34.99</div>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Fish and Chips">
+                    <span class="dish-badge">Classic</span>
+                </div>
+                <div class="dish-info">
+                    <h3>Fish & Chips</h3>
+                    <p>Fresh Atlantic cod in a light golden batter, served with hand-cut chips, mushy peas, tartare sauce & a lemon wedge. A timeless Irish pub favourite done right.</p>
+                    <div class="dish-price">&#8364;19.50</div>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="House Fajitas">
+                    <span class="dish-badge">Popular</span>
+                </div>
+                <div class="dish-info">
+                    <h3>House Fajitas</h3>
+                    <p>Your choice of vegetables, chicken or beef, wok-fried with vegetables in house herbs and spices. Served with side salad, tortilla wraps, sour cream and hand-cut chips.</p>
+                    <div class="dish-price">From &#8364;16.00</div>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80" alt="Guinness Stew">
+                    <span class="dish-badge">Irish Classic</span>
+                </div>
+                <div class="dish-info">
+                    <h3>Guinness & Leek Bangers & Mash</h3>
+                    <p>Guinness & leek sausages served on a bed of creamy mash potatoes with onion house gravy. Comfort food at its finest, straight from the heart of Ireland.</p>
+                    <div class="dish-price">&#8364;18.50</div>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&q=80" alt="Buttermilk Chicken">
+                    <span class="dish-badge">Crispy</span>
+                </div>
+                <div class="dish-info">
+                    <h3>Buttermilk Chicken Goujons</h3>
+                    <p>Buttermilk marinated chicken goujons, rolled in a golden crumb & house spices. Served with hand-cut chips, salad, rustic slaw & sweet chilli burger sauce.</p>
+                    <div class="dish-price">&#8364;16.95</div>
+                </div>
+            </div>
+        </div>
+        <div class="full-menu-btn-container">
+            <button class="btn-gold" onclick="openMenu()">
+                <i class="fas fa-book-open"></i> View Full Menu
+            </button>
+        </div>
+    </section>
+
+    <!-- Full Menu Modal -->
+    <div class="menu-modal" id="menuModal">
+        <div class="menu-modal-content">
+            <div class="menu-modal-header">
+                <button class="menu-close" onclick="closeMenu()">&times;</button>
+                <h2>Our Menu</h2>
+                <p>Gertie Brownes Bar & Bistro</p>
+            </div>
+            <div class="menu-body">
+                <div class="menu-tabs">
+                    <button class="menu-tab active" onclick="switchTab('starters')">Starters</button>
+                    <button class="menu-tab" onclick="switchTab('mains')">Mains</button>
+                    <button class="menu-tab" onclick="switchTab('burgers')">Burgers</button>
+                    <button class="menu-tab" onclick="switchTab('steaks')">Steaks</button>
+                    <button class="menu-tab" onclick="switchTab('curry')">Curry & Vegan</button>
+                    <button class="menu-tab" onclick="switchTab('desserts')">Desserts</button>
+                </div>
+
+                <!-- Starters -->
+                <div class="menu-section active" id="starters">
+                    <h3 class="menu-category-title">Starters</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Soup of the Day</h4>
+                            <p>Soup of the day, served with homemade brown bread</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Celery">7</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;6.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Deep Fried Breaded Brie</h4>
+                            <p>Wedges of French farmhouse brie, served with a berry coulis</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;7.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Clonakilty Black Pudding & Chorizo Potato Croquettes</h4>
+                            <p>Clonakilty black pudding, sauteed with chorizo & mashed potato croquettes, served with a side salad & house chipotle sauce</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Eggs">5</span><span class="allergen-tag" title="Soy">10</span><span class="allergen-tag" title="Mustard">11</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;8.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Prawn Pil-Pil on Sourdough</h4>
+                            <p>King prawns pan-fried in garlic & fresh chilli infused olive oil, served with toasted sourdough</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Crustaceans">3</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;11.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Warm Cajun Chicken Salad</h4>
+                            <p>Oak smoked chicken, bacon, baby gem lettuce tossed in house dressing, topped with parmesan shavings & crispy garlic croutons</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Eggs">5</span><span class="allergen-tag" title="Mustard">11</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">Starter &#8364;9.95 &middot; Mains &#8364;14.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Gerties Chicken Wings</h4>
+                            <p>Choose from Sticky BBQ, House Special Hot & Spicy Sauce, or Maple Sriracha</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Soy">10</span><span class="allergen-tag" title="Mustard">11</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">Starter &#8364;8.95 &middot; Mains &#8364;14.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Falafel & Hummus Salad <span style="color:#28a745;font-size:0.8rem;">(Vegan)</span></h4>
+                            <p>Mixed leaves, sun-kissed tomatoes, sliced red onion & black olives, topped with baked falafels & homemade hummus</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Sesame">3</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">Starter &#8364;9.95 &middot; Mains &#8364;14.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Garlic Cheesy Ciabatta</h4>
+                            <p>Toasted ciabatta with garlic butter & cheese, served with side salad</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;7.95</div>
+                    </div>
+                </div>
+
+                <!-- Mains -->
+                <div class="menu-section" id="mains">
+                    <h3 class="menu-category-title">Main Courses</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Tagliatelle Carbonara</h4>
+                            <p>Tagliatelle pasta, served with chicken, bacon lardons & sauteed mushrooms, in a creamy white wine sauce, parmesan shavings & garlic bread</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Eggs">7</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;19.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Prawn & Smoked Bacon Tagliatelle</h4>
+                            <p>Prawn & smoked bacon pasta in a creamy sauce, parmesan shavings & garlic bread</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Crustaceans">4</span><span class="allergen-tag" title="Eggs">7</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;23.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>House Fajitas</h4>
+                            <p>Choose from vegetables, chicken or beef, wok-fried with vegetables in house herbs and spices. Served with side salad, tortilla wraps, sour cream and hand-cut chips</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Eggs">5</span><span class="allergen-tag" title="Soy">10</span><span class="allergen-tag" title="Mustard">11</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">Veg &#8364;16.00 / Chicken &#8364;19.00 / Beef &#8364;19.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Vegetable Thai Curry</h4>
+                            <p>Mixed vegetables wok-fried in house special Thai green curry sauce, served with basmati rice & popadom</p>
+                        </div>
+                        <div class="menu-item-price">&#8364;16.95 <span style="font-size:0.85rem;color:var(--text-light);">(Add Chicken or Beef +&#8364;3.00)</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Oriental Red Lentil Dhal <span style="color:#28a745;font-size:0.8rem;">(Vegan)</span></h4>
+                            <p>Mixed lentil & vegetable curry, served with basmati rice & a popadom</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Soy">10</span><span class="allergen-tag" title="Mustard">11</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;16.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Fish & Chips</h4>
+                            <p>Fresh Atlantic cod in golden batter, hand-cut chips, mushy peas, tartare sauce & lemon</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Fish">3</span><span class="allergen-tag" title="Eggs">5</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;19.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pan-Seared Fillet of Salmon Romesco</h4>
+                            <p>Pan-seared salmon fillet served on romesco sauce with seasonal vegetables & potatoes</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Fish">3</span><span class="allergen-tag" title="Nuts">7</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;22.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Seafood Chowder</h4>
+                            <p>Creamy seafood chowder with fresh fish, mussels & prawns, served with homemade brown bread</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Fish">3</span><span class="allergen-tag" title="Crustaceans">4</span><span class="allergen-tag" title="Milk">7</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;18.95</div>
+                    </div>
+                </div>
+
+                <!-- Burgers -->
+                <div class="menu-section" id="burgers">
+                    <h3 class="menu-category-title">Burgers & Sandwiches</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Gerties Burger</h4>
+                            <p>Shane Mahers homemade 8oz flame-grilled steak burger, topped with cheddar cheese, bacon, beef tomato & lettuce & a beer-battered onion ring in a brioche bun. Served with hand-cut chips, rustic slaw & roasted red pepper relish</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Eggs">5</span><span class="allergen-tag" title="Mustard">7</span><span class="allergen-tag" title="Soy">9</span><span class="allergen-tag" title="Sulphites">11</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;18.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Buttermilk Chicken Burger</h4>
+                            <p>Marinated buttermilk chicken breast, rolled in a golden crumb & house spices, topped with bacon, cheddar, lettuce & a beer-battered onion ring in a brioche bun. Served with hand-cut chips, rustic slaw & sweet chilli burger sauce</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Eggs">5</span><span class="allergen-tag" title="Mustard">7</span><span class="allergen-tag" title="Soy">10</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;19.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pedros Philly Steak Sandwich</h4>
+                            <p>6oz Hereford sirloin steak strips cooked to your liking with sauteed onions, served in a grilled ciabatta topped with garlic butter, fresh rocket and cheese sauce. Finished with hand-cut chips, beer-battered onion ring, with a choice of garlic butter or peppercorn sauce</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Eggs">5</span><span class="allergen-tag" title="Mustard">7</span><span class="allergen-tag" title="Soy">10</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;24.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Buttermilk Chicken Goujons</h4>
+                            <p>Buttermilk marinated chicken goujons, rolled in a golden crumb & house spices. Served with hand-cut chips, salad, rustic slaw & sweet chilli burger sauce</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Eggs">5</span><span class="allergen-tag" title="Mustard">7</span><span class="allergen-tag" title="Soy">10</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;16.95</div>
+                    </div>
+                </div>
+
+                <!-- Steaks -->
+                <div class="menu-section" id="steaks">
+                    <h3 class="menu-category-title">From The Grill</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>10oz Hereford Sirloin Steak</h4>
+                            <p>Prime Hereford 10oz sirloin steak cooked to your liking, sauteed mushrooms & onions with hand-cut chips, beer-battered onion ring. With a garlic butter or peppercorn sauce</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;34.99</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Steak & Chips</h4>
+                            <p>Grilled sirloin steak served with hand-cut chips, grilled tomato, mushrooms & onion rings</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;28.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Steak Sandwich</h4>
+                            <p>Grilled steak strips on toasted sourdough with caramelised onions, horseradish cream & rocket. Served with hand-cut chips</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Mustard">11</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;19.95</div>
+                    </div>
+                </div>
+
+                <!-- Curry & Vegan -->
+                <div class="menu-section" id="curry">
+                    <h3 class="menu-category-title">Curry & Plant-Based</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Vegetable Thai Curry</h4>
+                            <p>Mixed vegetables wok-fried in house special Thai green curry sauce, served with basmati rice & popadom</p>
+                        </div>
+                        <div class="menu-item-price">&#8364;16.95 <span style="font-size:0.85rem;color:var(--text-light);">(Add Chicken or Beef +&#8364;3.00)</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Oriental Red Lentil Dhal <span style="color:#28a745;font-size:0.8rem;">(Vegan)</span></h4>
+                            <p>Mixed lentil & vegetable curry, served with basmati rice & a popadom</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Soy">10</span><span class="allergen-tag" title="Mustard">11</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;16.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Falafel & Hummus Salad <span style="color:#28a745;font-size:0.8rem;">(Vegan)</span></h4>
+                            <p>Mixed leaves, sun-kissed tomatoes, sliced red onion & black olives, topped with baked falafels & homemade hummus</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Sesame">3</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">Starter &#8364;9.95 &middot; Mains &#8364;14.95</div>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="menu-section" id="desserts">
+                    <h3 class="menu-category-title">Sweet Endings</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Hatters Toblerone Cheesecake</h4>
+                            <p>Rich and creamy Toblerone cheesecake with a chocolate biscuit base, topped with chocolate sauce</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Nuts">7</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Sticky Toffee Pudding</h4>
+                            <p>Warm sticky toffee pudding served with vanilla ice cream and butterscotch sauce</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Gluten">1</span><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Eggs">5</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;8.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Irish Coffee</h4>
+                            <p>Hot coffee with Irish whiskey and brown sugar, topped with freshly whipped cream</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Milk">3</span><span class="allergen-tag" title="Sulphites">13</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;7.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Selection of Ice Cream</h4>
+                            <p>Three scoops of premium ice cream with your choice of toppings</p>
+                            <div class="menu-item-allergens"><span class="allergen-tag" title="Milk">3</span></div>
+                        </div>
+                        <div class="menu-item-price">&#8364;6.95</div>
+                    </div>
+                </div>
+
+                <div class="menu-legend">
+                    <span><span class="allergen-tag">1</span> Gluten</span>
+                    <span><span class="allergen-tag">3</span> Milk</span>
+                    <span><span class="allergen-tag">4</span> Crustaceans</span>
+                    <span><span class="allergen-tag">5</span> Eggs</span>
+                    <span><span class="allergen-tag">7</span> Nuts/Celery</span>
+                    <span><span class="allergen-tag">9</span> Soy</span>
+                    <span><span class="allergen-tag">10</span> Mustard</span>
+                    <span><span class="allergen-tag">11</span> Sesame</span>
+                    <span><span class="allergen-tag">13</span> Sulphites</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-header">
+            <span class="section-label">The Experience</span>
+            <h2>Gallery</h2>
+            <p>A glimpse into the atmosphere, flavours, and moments that make Gertie Brownes special.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item wide">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&q=80" alt="Pub Interior">
+                <span>Warm Atmosphere</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Burger">
+                <span>Gerties Burger</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="Steak">
+                <span>Sirloin Steak</span>
+            </div>
+            <div class="gallery-item tall">
+                <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80" alt="Guinness Stew">
+                <span>Bangers & Mash</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Fish and Chips">
+                <span>Fish & Chips</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&q=80" alt="Chicken Wings">
+                <span>Chicken Wings</span>
+            </div>
+            <div class="gallery-item wide">
+                <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&q=80" alt="Craft Beer">
+                <span>Craft Beer Selection</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="Fajitas">
+                <span>House Fajitas</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="section-header">
+            <span class="section-label">Testimonials</span>
+            <h2>What Our Guests Say</h2>
+            <p>Real reviews from real guests who have experienced the warmth and flavour of Gertie Brownes.</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">Traditional Irish pub with great decoration to enjoy. Fantastic pint of Guinness. Had a good chat with the manager Morgan who gave us a nice insight to life in Athlone. Did not have any food but everything going out to the tables looked, and smelled, delicious! Will be back soon.</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">J</div>
+                    <div class="reviewer-info">
+                        <h4>Jess Aganett</h4>
+                        <span>Local Guide &middot; 24 reviews</span>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">Great food good atmosphere we stopped here for lunch on our way to Connemara. The staff were incredibly welcoming and the portions were generous. A must-visit when passing through Athlone.</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">B</div>
+                    <div class="reviewer-info">
+                        <h4>Brian Garza</h4>
+                        <span>Local Guide &middot; 145 reviews</span>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">Food was superb, I had steak sandwich which was the best I had in a long time and my friend had fish and chips, light crispy and fresh. Drink selection was vast, cocktails, non alcoholic, beers and lovely wines. Highly recommend!</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">D</div>
+                    <div class="reviewer-info">
+                        <h4>Denis Todea</h4>
+                        <span>2 reviews &middot; 8 photos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">Food was absolutely gorgeous, some of the best we have had. The busy atmosphere is testament to that. Staff are lovely and although they were very busy, we were still served very quickly and food came out quickly.</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">S</div>
+                    <div class="reviewer-info">
+                        <h4>Sasha Kemmy</h4>
+                        <span>Local Guide &middot; 20 reviews</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="highlights">
+        <div class="highlights-grid">
+            <div class="highlight-item">
+                <i class="fas fa-wheelchair"></i>
+                <h4>Wheelchair Accessible</h4>
+                <p>Accessible car park & entrance</p>
+            </div>
+            <div class="highlight-item">
+                <i class="fas fa-chair"></i>
+                <h4>Outdoor Seating</h4>
+                <p>Al fresco dining available</p>
+            </div>
+            <div class="highlight-item">
+                <i class="fas fa-utensils"></i>
+                <h4>Dine-In</h4>
+                <p>Full table service</p>
+            </div>
+            <div class="highlight-item">
+                <i class="fas fa-shopping-bag"></i>
+                <h4>Takeaway</h4>
+                <p>Kerbside pickup available</p>
+            </div>
+            <div class="highlight-item">
+                <i class="fas fa-fire"></i>
+                <h4>Fireplace</h4>
+                <p>Cozy warmth all year round</p>
+            </div>
+            <div class="highlight-item">
+                <i class="fas fa-music"></i>
+                <h4>Live Music</h4>
+                <p>Regular performances</p>
+            </div>
+            <div class="highlight-item">
+                <i class="fas fa-tv"></i>
+                <h4>Sport</h4>
+                <p>Live screenings</p>
+            </div>
+            <div class="highlight-item">
+                <i class="fas fa-wine-glass-alt"></i>
+                <h4>Great Selection</h4>
+                <p>Beers, wines & cocktails</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Us Section -->
+    <section class="visit" id="visit">
+        <div class="visit-grid">
+            <div class="visit-info">
+                <span class="section-label">Find Us</span>
+                <h2>Visit Gertie Brownes</h2>
+                <p>We are located in the heart of Athlone, just a short walk from the River Shannon and Athlone Castle. Come experience the warmth and flavour that has made us a local favourite.</p>
+                <ul class="info-list">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Address</strong>
+                            <span>9 Costume Pl, Athlone, Co. Westmeath, N37 E142, Ireland</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Opening Hours</strong>
+                            <span>Open Daily &middot; Closes 11:30 PM</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone</strong>
+                            <span><a href="tel:+353857592798">+353 85 759 2798</a></span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-euro-sign"></i>
+                        <div>
+                            <strong>Price Range</strong>
+                            <span>&#8364;20-30 per person (reported by 328 people)</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-map"></i>
+                        <div>
+                            <strong>Plus Code</strong>
+                            <span>C3F5+CW Athlone, County Westmeath, Ireland</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-car"></i>
+                        <div>
+                            <strong>Service Options</strong>
+                            <span>Dine-in &middot; Kerbside Pickup &middot; No Delivery</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="visit-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2390.5!2d-7.944!3d53.423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTPCsDI1JzIyLjgiTiA3wrA1NiczOC40Ilc!5e0!3m2!1sen!2sie!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Gertie Brownes</h3>
+                <p>A beloved Irish gastropub in the heart of Athlone, serving exceptional food, craft drinks, and warm hospitality since 2010. Where tradition meets taste.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#signature">Menu</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="#" onclick="openMenu(); switchTab('starters'); return false;">Starters</a></li>
+                    <li><a href="#" onclick="openMenu(); switchTab('mains'); return false;">Main Courses</a></li>
+                    <li><a href="#" onclick="openMenu(); switchTab('burgers'); return false;">Burgers</a></li>
+                    <li><a href="#" onclick="openMenu(); switchTab('steaks'); return false;">Steaks</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+353857592798">+353 85 759 2798</a></li>
+                    <li><a href="https://maps.app.goo.gl/xgjGWSnXm33t6yxz9" target="_blank">Get Directions</a></li>
+                    <li>9 Costume Pl, Athlone</li>
+                    <li>Open Daily until 11:30 PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gertie Brownes Bar & Bistro. All rights reserved. | 9 Costume Pl, Athlone, Co. Westmeath, Ireland</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Menu Modal Functions
+        function openMenu() {
+            document.getElementById('menuModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            document.getElementById('menuModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function switchTab(tabId) {
+            // Remove active from all tabs
+            document.querySelectorAll('.menu-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.menu-section').forEach(section => section.classList.remove('active'));
+
+            // Add active to clicked tab and corresponding section
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('menuModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMenu();
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe section headers and cards
+        document.querySelectorAll('.section-header, .dish-card, .review-card, .gallery-item, .highlight-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
